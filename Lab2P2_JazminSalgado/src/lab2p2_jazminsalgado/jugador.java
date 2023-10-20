@@ -23,9 +23,10 @@ public class jugador {
     public jugador(String n){
         nombre=n;
     } 
-    public jugador(String n, int cc){
+    public jugador(String n, int cc, double c){
         nombre=n;
         cantcarro=cc;
+        cuenta=c;
     }
     
     public void setNombre(String n){
@@ -55,7 +56,9 @@ public class jugador {
         return puntosrep;
     }
     public void setCuenta(double c){
-        cuenta=c;
+        if (c>0) {
+            cuenta=c;
+        } System.out.println("No tienes dinero (pobre)");
     } 
     public double getCuenta(){
         return cuenta;
@@ -63,7 +66,7 @@ public class jugador {
 
     @Override
     public String toString() {
-        return "Datos de Jugador: "+nombre+ "\n carros: "+carros+"\npuntos de reputación: "+puntosrep+"\nDinero actual: "+cuenta;
+        return "Datos de Jugador: "+nombre+ "\n cantidad de carros: "+cantcarro+"\npuntos de reputación: "+puntosrep+"\nDinero actual: "+cuenta;
     }
     
     

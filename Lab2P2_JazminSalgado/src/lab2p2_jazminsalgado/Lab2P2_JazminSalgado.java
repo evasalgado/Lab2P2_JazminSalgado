@@ -14,7 +14,11 @@ public class Lab2P2_JazminSalgado {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        int op=0;
+        while (op!=4) {            
+            System.out.println("---MENU----\n"
+                    + "");
+        }
     }
     
 }
