@@ -25,11 +25,13 @@ public class jugador {
     public jugador(String n, int pr, double c) {
         nombre = n;
         cuenta = c;
+        puntosrep = pr;
     }
 
     public jugador(int cc, ArrayList<carro> c) {
         cantcarro = cc;
         carros = c;
+
     }
 
     public void setNombre(String n) {
@@ -76,24 +78,23 @@ public class jugador {
         if (c > 0) {
             cuenta = c;
         }
-        System.out.println("No tienes dinero");
     }
 
     public double getCuenta() {
         return cuenta;
     }
-    
-    public void listarCarros(){
+
+    public void listarCarros() {
         for (carro carro1 : carros) {
             if (carro1 instanceof carro) {
-                System.out.println(carro1+"\n");
+                System.out.println(carro1 + "\n");
             }
         }
     }
 
     @Override
     public String toString() {
-        return "Datos de Jugador: " + nombre + "\n cantidad de carros: " + cantcarro + "\npuntos de reputación: " + puntosrep + "\nDinero actual: " + cuenta;
+        return nombre + "\n cantidad de carros: " + cantcarro + "\npuntos de reputación: " + puntosrep + "\nDinero actual: " + cuenta;
     }
 
 }

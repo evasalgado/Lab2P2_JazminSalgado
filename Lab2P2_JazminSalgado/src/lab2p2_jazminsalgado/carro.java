@@ -90,7 +90,7 @@ public class carro {
 
     @Override
     public String toString() {
-        return "Lista de carros disponibles: \n" + marca + "\n" + modelo + "\n" + color + "\n" + precio + "\n" + mejoras;
+        return  marca + "\n" + modelo + "\n" + color + "\n" + precio + "\n" + mejoras;
     }
 
 }

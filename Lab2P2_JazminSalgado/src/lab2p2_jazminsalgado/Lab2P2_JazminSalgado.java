@@ -42,6 +42,7 @@ public class Lab2P2_JazminSalgado {
                     menuCarro();
                     break;
                 case 3:
+                    menuComprayVenta();
                     break;
                 case 4:
                     System.out.println("GRACIAS POR UTILIZAR MI PROGRAMA");
@@ -75,7 +76,8 @@ public class Lab2P2_JazminSalgado {
                     System.out.println("Ingrese el nombre de usuario del jugador: ");
                     n = leer.nextLine();
                     n = leer.nextLine();
-                    pr = alea.nextInt(1000, 999999);
+                    System.out.println("Ingrese sus puntos de reputacion: ");
+                    pr = leer.nextInt();
                     money = alea.nextDouble(100000, 999999);
                     agregarJugador(n, pr, money);
                     break;
@@ -124,6 +126,7 @@ public class Lab2P2_JazminSalgado {
                     marca = leer.nextLine();
                     System.out.println("Ingrese el modelo del carro " + marca + ": ");
                     modelo = leer.nextLine();
+                    System.out.println("Minimize su pantalla");
                     color = JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
                     System.out.println("Ingrese un precio de carro: ");
                     precio = leer.nextDouble();
@@ -180,8 +183,8 @@ public class Lab2P2_JazminSalgado {
             if (jugadores.get(i) instanceof jugador) {
                 System.out.println("Ingrese el nombre de usuario del jugador: ");
                 n = leer.nextLine();
-                n = leer.nextLine();
-                pr = alea.nextInt(1000, 999999);
+                System.out.println("Ingrese sus puntos de reputacion: ");
+                pr = leer.nextInt();
                 money = alea.nextDouble(100000, 999999);
                 ((jugador) jugadores.get(i)).setNombre(n);
                 ((jugador) jugadores.get(i)).setPuntosrep(pr);
@@ -216,7 +219,7 @@ public class Lab2P2_JazminSalgado {
     }
 
     public static void agregarCarro(String m, String mod, Color c, double p) {
-        carros.add(new carro(mod, mod, c, p));
+        carros.add(new carro(m, mod, c, p));
         System.out.println("Carro agregado");
     }
 
@@ -339,15 +342,15 @@ public class Lab2P2_JazminSalgado {
         Scanner leer = new Scanner(System.in);
         if (i >= 0 && i < jugadores.size()) {
             if (jugadores.get(i) instanceof jugador) {
-                ((jugador) jugadores.get(i)).listarCarros();
                 System.out.println("Ingrese el indice del carro que desea Vender: ");
                 int c = leer.nextInt();
                 if (c >= 0 && c < ((jugador) jugadores.get(i)).getCarros().size()) {
                     if (((jugador) jugadores.get(i)).getCarros().get(c) instanceof carro) {
-                        carros.add(compra.get(c));
+                        carros.add(((jugador) jugadores.get(i)).getCarros().get(c));
                         ((jugador) jugadores.get(i)).setCuenta(((jugador) jugadores.get(i)).getCuenta() + ((carro) carros.get(c)).getPrecio());
                         System.out.println("Carro vendido: Ahora el modelo " + ((carro) carros.get(c)).getModelo() + " vuelve a la lista de carros  ");
                         compra.remove(c);
+                        ((jugador) jugadores.get(i)).getCarros().remove(c);
                         ((jugador) jugadores.get(i)).setCantcarro(((jugador) jugadores.get(i)).getCantcarro() - 1);
                     }
                 }
