@@ -4,9 +4,11 @@
  */
 package lab2p2_jazminsalgado;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.JColorChooser;
 
 /**
  *
@@ -109,7 +111,17 @@ public class Lab2P2_JazminSalgado {
             op = leer.nextInt();
             switch (op) {
                 case 1:
-
+                    String marca = "",
+                     modelo = "";
+                    Color color;
+                    double precio = 0;
+                    System.out.println("Ingrese la marca del carro: ");
+                    marca = leer.nextLine();
+                    marca = leer.nextLine();
+                    System.out.println("Ingrese el modelo del carro "+marca+": ");
+                    modelo=leer.nextLine();
+                    color=JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
+                    agregarCarro(marca, modelo, color, precio);
                     break;
                 case 2:
                     break;
@@ -185,5 +197,10 @@ public class Lab2P2_JazminSalgado {
 
             }
         }
+    }
+    
+    public static void agregarCarro(String m, String mod, Color c, double p){
+       carros.add(new carro(mod, mod, c, p));
+        System.out.println("Carro agregado");
     }
 }
