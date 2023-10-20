@@ -88,6 +88,7 @@ public class Lab2P2_JazminSalgado {
                     listarJugadores();
                     System.out.println("Ingrese el indice del jugador a eliminar: ");
                     int e = leer.nextInt();
+                    eliminarJugador(e);
                     break;
                 default:
                     System.out.println("retornando al main....");
@@ -154,11 +155,34 @@ public class Lab2P2_JazminSalgado {
                 n = leer.nextLine();
                 pr = alea.nextInt(1000, 999999);
                 money = alea.nextDouble(100000, 999999);
-                ((jugador)jugadores.get(i)).setNombre(n);
-                ((jugador)jugadores.get(i)).setPuntosrep(pr);
-                ((jugador)jugadores.get(i)).setCuenta(money);
-                System.out.println("informacion modificada, "+n);
-                
+                ((jugador) jugadores.get(i)).setNombre(n);
+                ((jugador) jugadores.get(i)).setPuntosrep(pr);
+                ((jugador) jugadores.get(i)).setCuenta(money);
+                System.out.println("informacion modificada, " + n);
+
+            }
+        }
+    }
+
+    public static void eliminarJugador(int i) {
+        Scanner leer = new Scanner(System.in);
+        if (i >= 0 && i < jugadores.size()) {
+            if (jugadores.get(i) instanceof jugador) {
+                System.out.println("Estas seguro de eliminar?[s/n]:  ");
+                char resp = leer.next().charAt(0);
+                switch (resp) {
+                    case 's':
+                        System.out.println("Usuario eliminado, adios " + ((jugador) jugadores.get(i)).getNombre());
+                        jugadores.remove(i);
+                        break;
+                    case 'n':
+                        System.out.println("Eliminación cancelada");
+                        break;
+                    default:
+                        System.out.println("Opcion ingresada invalida");
+                        break;
+                }
+
             }
         }
     }
