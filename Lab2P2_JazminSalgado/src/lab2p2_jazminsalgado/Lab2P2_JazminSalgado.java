@@ -124,8 +124,11 @@ public class Lab2P2_JazminSalgado {
                     agregarCarro(marca, modelo, color, precio);
                     break;
                 case 2:
+                    
                     break;
                 case 3:
+                    System.out.println("Lista de carros: ");
+                    listarCarros();
                     break;
                 case 4:
                     break;
@@ -202,5 +205,11 @@ public class Lab2P2_JazminSalgado {
     public static void agregarCarro(String m, String mod, Color c, double p){
        carros.add(new carro(mod, mod, c, p));
         System.out.println("Carro agregado");
+    }
+    
+    public static void listarCarros(){
+        for (Object cars : carros) {
+            System.out.println(cars+"\n");
+        }
     }
 }
