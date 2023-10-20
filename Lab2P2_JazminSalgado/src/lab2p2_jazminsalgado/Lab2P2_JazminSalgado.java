@@ -20,6 +20,7 @@ public class Lab2P2_JazminSalgado {
     static ArrayList compra = new ArrayList();
     static ArrayList jugadores = new ArrayList();
     static ArrayList carros = new ArrayList();
+
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
         int op = 0;
@@ -53,33 +54,34 @@ public class Lab2P2_JazminSalgado {
         Scanner leer = new Scanner(System.in);
         Random alea = new Random();
         int op = 0;
-        while (op==0||op == 1 || op == 2 || op == 3 || op == 4) {
+        while (op == 0 || op == 1 || op == 2 || op == 3 || op == 4) {
             System.out.println("----MENU JUGADORES----\n"
                     + "1. Crear Jugador\n"
                     + "2. Modificar Jugador\n"
                     + "3. Listar jugadores\n"
-                    + "4. Eliminar jugadores");
-            op= leer.nextInt();
+                    + "4. Eliminar jugadores\n"
+                    + "(si deseas salir, ingresa cualquier otro numero)");
+            op = leer.nextInt();
             switch (op) {
                 case 1:
                     String n;
-                    int pr=0;
-                    double money=0;
+                    int pr = 0;
+                    double money = 0;
                     System.out.println("Ingrese el nombre de usuario del jugador: ");
-                    n=leer.nextLine();
-                    n=leer.nextLine();
-                    pr=alea.nextInt(100,100000);
-                    money=alea.nextDouble(1000,100000);
+                    n = leer.nextLine();
+                    n = leer.nextLine();
+                    pr = alea.nextInt(100, 100000);
+                    money = alea.nextDouble(1000, 100000);
                     agregarJugador(n, pr, money);
                     break;
-                case 2: 
+                case 2:
                     System.out.println("Ingrese el indice del jugador a modificar: ");
-                    int m=leer.nextInt();
+                    int m = leer.nextInt();
                     break;
-                case 3: 
-                    System.out.println("Ingrese el indice del jugador a eliminar: ");
-                    int e=leer.nextInt();
-                    break; 
+                case 3:
+                    System.out.println("Lista de jugadores: ");
+                    listarJugadores();
+                    break;
                 case 4:
                     break;
                 default:
@@ -88,24 +90,25 @@ public class Lab2P2_JazminSalgado {
             }
         }
     }
+
     public static void menuCarro() {
         Scanner leer = new Scanner(System.in);
         int op = 0;
-        while (op==0||op == 1 || op == 2 || op == 3 || op == 4) {
+        while (op == 0 || op == 1 || op == 2 || op == 3 || op == 4) {
             System.out.println("----MENU JUGADORES----\n"
                     + "1. Crear Carro\n"
                     + "2. Modificar Carro\n"
                     + "3. Listar Carros\n"
                     + "4. Eliminar Carro");
-            op= leer.nextInt();
+            op = leer.nextInt();
             switch (op) {
                 case 1:
-                    
+
                     break;
-                case 2: 
+                case 2:
                     break;
-                case 3: 
-                    break; 
+                case 3:
+                    break;
                 case 4:
                     break;
                 default:
@@ -114,11 +117,22 @@ public class Lab2P2_JazminSalgado {
             }
         }
     }
-    public static void agregarJugador(String n, int pr, double p){
+
+    public static void agregarJugador(String n, int pr, double p) {
         jugadores.add(new jugador(n, pr, p));
-        System.out.println("Jugador creado. Bienvenido," +n);
+        System.out.println("Jugador creado. Bienvenido," + n);
+
     }
+
     public static void listarJugadores() {
-        
+        if (jugadores.isEmpty()) {
+            System.out.println("Lista vacia");
+        } else {
+            for (Object player : jugadores) {
+                if (player instanceof jugador) {
+                    System.out.println(player + "\n");
+                }
+            }
+        }
     }
 }
