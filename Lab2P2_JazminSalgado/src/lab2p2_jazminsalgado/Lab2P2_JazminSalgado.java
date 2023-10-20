@@ -283,7 +283,8 @@ public class Lab2P2_JazminSalgado {
             System.out.println("---MENU DE COMPRA Y VENTA---\n"
                     + "1. Comprar Carro\n"
                     + "2. Hacer modificaciones de carro\n"
-                    + "3. Volver al menu");
+                    + "3. Listar compras\n"
+                    + "4. Salir");
             op = leer.nextInt();
             switch (op) {
                 case 1:
@@ -295,13 +296,17 @@ public class Lab2P2_JazminSalgado {
                 case 2:
                     break;
                 case 3:
-
+                    System.out.println("Ventas hechas:\n");
+                    listarCompras();
+                    break;
+                case 4: 
+                    System.out.println("Volviendo al menu");
                     break;
                 default:
                     System.out.println("Numero ingresado no valido");
                     break;
             }
-        } while (op != 3);
+        } while (op != 4);
     }
 
     public static void comprarCarro(int i) {
@@ -321,6 +326,12 @@ public class Lab2P2_JazminSalgado {
                     }
                 }
             }
+        }
+    }
+    
+    public static void listarCompras(){
+        for (Object sells : compra) {
+            System.out.println(sells+"\n");
         }
     }
 }
