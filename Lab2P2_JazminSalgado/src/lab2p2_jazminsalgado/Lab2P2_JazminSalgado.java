@@ -5,6 +5,7 @@
 package lab2p2_jazminsalgado;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -50,6 +51,7 @@ public class Lab2P2_JazminSalgado {
 
     public static void menujugador() {
         Scanner leer = new Scanner(System.in);
+        Random alea = new Random();
         int op = 0;
         while (op==0||op == 1 || op == 2 || op == 3 || op == 4) {
             System.out.println("----MENU JUGADORES----\n"
@@ -60,11 +62,23 @@ public class Lab2P2_JazminSalgado {
             op= leer.nextInt();
             switch (op) {
                 case 1:
-                    
+                    String n;
+                    int pr=0;
+                    double money=0;
+                    System.out.println("Ingrese el nombre de usuario del jugador: ");
+                    n=leer.nextLine();
+                    n=leer.nextLine();
+                    pr=alea.nextInt(100,100000);
+                    money=alea.nextDouble(1000,100000);
+                    agregarJugador(n, pr, money);
                     break;
                 case 2: 
+                    System.out.println("Ingrese el indice del jugador a modificar: ");
+                    int m=leer.nextInt();
                     break;
                 case 3: 
+                    System.out.println("Ingrese el indice del jugador a eliminar: ");
+                    int e=leer.nextInt();
                     break; 
                 case 4:
                     break;
@@ -99,5 +113,12 @@ public class Lab2P2_JazminSalgado {
                     break;
             }
         }
+    }
+    public static void agregarJugador(String n, int pr, double p){
+        jugadores.add(new jugador(n, pr, p));
+        System.out.println("Jugador creado. Bienvenido," +n);
+    }
+    public static void listarJugadores() {
+        
     }
 }
