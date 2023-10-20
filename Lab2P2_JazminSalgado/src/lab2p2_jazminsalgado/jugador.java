@@ -46,7 +46,7 @@ public class jugador {
         }
     }
 
-    public int getCantcarri() {
+    public int getCantcarro() {
         return cantcarro;
     }
 

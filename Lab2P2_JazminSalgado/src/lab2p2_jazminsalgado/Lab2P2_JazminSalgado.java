@@ -26,7 +26,8 @@ public class Lab2P2_JazminSalgado {
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
         int op = 0;
-        while (op != 4) {
+        do {
+
             System.out.println("---MENU----\n"
                     + "1. Opción de Jugadores\n"
                     + "2. Opción de Carros\n"
@@ -48,15 +49,17 @@ public class Lab2P2_JazminSalgado {
                 default:
                     System.out.println("Ingrese una opcion valida");
                     break;
+
             }
-        }
+        } while (op != 4);
     }
 
     public static void menujugador() {
         Scanner leer = new Scanner(System.in);
         Random alea = new Random();
         int op = 0;
-        while (op == 0 || op == 1 || op == 2 || op == 3 || op == 4) {
+
+        do {
             System.out.println("----MENU JUGADORES----\n"
                     + "1. Crear Jugador\n"
                     + "2. Modificar Jugador\n"
@@ -96,7 +99,7 @@ public class Lab2P2_JazminSalgado {
                     System.out.println("retornando al main....");
                     break;
             }
-        }
+        } while (op == 0 || op == 1 || op == 2 || op == 3 || op == 4);
     }
 
     public static void menuCarro() {
@@ -107,7 +110,8 @@ public class Lab2P2_JazminSalgado {
                     + "1. Crear Carro\n"
                     + "2. Modificar Carro\n"
                     + "3. Listar Carros\n"
-                    + "4. Eliminar Carro");
+                    + "4. Eliminar Carro\n"
+                    + "(si deseas salir, ingresa cualquier otro numero)");
             op = leer.nextInt();
             switch (op) {
                 case 1:
@@ -121,18 +125,25 @@ public class Lab2P2_JazminSalgado {
                     System.out.println("Ingrese el modelo del carro " + marca + ": ");
                     modelo = leer.nextLine();
                     color = JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
+                    System.out.println("Ingrese un precio de carro: ");
+                    precio = leer.nextDouble();
                     agregarCarro(marca, modelo, color, precio);
                     break;
                 case 2:
                     listarCarros();
                     System.out.println("Ingrese el indice del carro que desea modificar: ");
                     int m = leer.nextInt();
+                    modificarCarro(m);
                     break;
                 case 3:
                     System.out.println("Lista de carros: ");
                     listarCarros();
                     break;
                 case 4:
+                    listarCarros();
+                    System.out.println("Ingrese el indice del carro que desea eliminar: ");
+                    int d = leer.nextInt();
+                    eliminarCarro(d);
                     break;
                 default:
                     System.out.println("retornando al main....");
@@ -229,13 +240,87 @@ public class Lab2P2_JazminSalgado {
                 System.out.println("Ingrese el modelo del carro " + marca + ": ");
                 modelo = leer.nextLine();
                 color = JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
-                ((carro)carros.get(i)).setMarca(marca);
-                ((carro)carros.get(i)).setModelo(modelo);
-                ((carro)carros.get(i)).setPrecio(precio);
-                ((carro)carros.get(i)).setColor(color);
+                System.out.println("Ingrese un precio de carro: ");
+                precio = leer.nextDouble();
+                ((carro) carros.get(i)).setMarca(marca);
+                ((carro) carros.get(i)).setModelo(modelo);
+                ((carro) carros.get(i)).setPrecio(precio);
+                ((carro) carros.get(i)).setColor(color);
                 System.out.println("Carro modificado correctamente");
             }
 
+        }
+    }
+
+    public static void eliminarCarro(int i) {
+        Scanner leer = new Scanner(System.in);
+        if (i >= 0 && i < carros.size()) {
+            if (carros.get(i) instanceof carro) {
+                System.out.println("Estas seguro de eliminar?[s/n]:  ");
+                char resp = leer.next().charAt(0);
+                switch (resp) {
+                    case 's':
+                        System.out.println("Carro eliminado correctamente");
+                        carros.remove(i);
+                        break;
+                    case 'n':
+                        System.out.println("Eliminación cancelada");
+                        break;
+                    default:
+                        System.out.println("Opcion ingresada invalida");
+                        break;
+                }
+
+            }
+        }
+    }
+
+    public static void menuComprayVenta() {
+        Scanner leer = new Scanner(System.in);
+        Random alea = new Random();
+        int op = 0;
+        do {
+            System.out.println("---MENU DE COMPRA Y VENTA---\n"
+                    + "1. Comprar Carro\n"
+                    + "2. Hacer modificaciones de carro\n"
+                    + "3. Volver al menu");
+            op = leer.nextInt();
+            switch (op) {
+                case 1:
+                    listarJugadores();
+                    System.out.println("Ingrese el indice del jugador que quiere comprar el carro: ");
+                    int c = leer.nextInt();
+                    comprarCarro(c);
+                    break;
+                case 2:
+                    break;
+                case 3:
+
+                    break;
+                default:
+                    System.out.println("Numero ingresado no valido");
+                    break;
+            }
+        } while (op != 3);
+    }
+
+    public static void comprarCarro(int i) {
+        Scanner leer = new Scanner(System.in);
+        if (i >= 0 && i < jugadores.size()) {
+            if (jugadores.get(i) instanceof jugador) {
+                listarCarros();
+                System.out.println("Ingrese el indice del carro que desea comprar: ");
+                int c = leer.nextInt();
+                if (c >= 0 && c < carros.size()) {
+                    if (carros.get(c) instanceof carro) {
+                        compra.add(((jugador) jugadores.get(i)).getCarros().add(((carro) carros.get(c))));
+                        ((jugador) jugadores.get(i)).setCuenta(((jugador) jugadores.get(i)).getCuenta() - ((carro) carros.get(c)).getPrecio());
+                        System.out.println("Carro vendido: Ahora el modelo " + ((carro) carros.get(c)).getModelo() + " es de " + ((jugador) jugadores.get(i)).getNombre());
+                        carros.remove(c);
+                        ((jugador) jugadores.get(i)).setCantcarro(((jugador) jugadores.get(i)).getCantcarro() + 1);
+                    }
+                }
+            }
         }
     }
 }
