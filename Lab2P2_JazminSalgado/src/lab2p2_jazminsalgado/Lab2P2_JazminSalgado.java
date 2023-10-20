@@ -289,16 +289,23 @@ public class Lab2P2_JazminSalgado {
             switch (op) {
                 case 1:
                     listarJugadores();
-                    System.out.println("Ingrese el indice del jugador que quiere comprar el carro: ");
+                    System.out.println("Ingrese el indice del jugador que quiere comprar un carro: ");
                     int c = leer.nextInt();
                     comprarCarro(c);
                     break;
                 case 2:
+                    listarJugadores();
+                    System.out.println("Ingrese el indice del jugador que quiere vender un carro: ");
+                    int m = leer.nextInt();
+                    modificarInstal(m);
                     break;
                 case 3:
-
+                    listarJugadores();
+                    System.out.println("Ingrese el indice del jugador que quiere vender un carro: ");
+                    int v = leer.nextInt();
+                    venderCarro(v);
                     break;
-                case 4: 
+                case 4:
                     System.out.println("Volviendo al menu");
                     break;
                 default:
@@ -319,7 +326,7 @@ public class Lab2P2_JazminSalgado {
                     if (carros.get(c) instanceof carro) {
                         compra.add(((jugador) jugadores.get(i)).getCarros().add(((carro) carros.get(c))));
                         ((jugador) jugadores.get(i)).setCuenta(((jugador) jugadores.get(i)).getCuenta() - ((carro) carros.get(c)).getPrecio());
-                        System.out.println("Carro vendido: Ahora el modelo " + ((carro) carros.get(c)).getModelo() + " es de " + ((jugador) jugadores.get(i)).getNombre());
+                        System.out.println("Carro comprado: Ahora el modelo " + ((carro) carros.get(c)).getModelo() + " es de " + ((jugador) jugadores.get(i)).getNombre());
                         carros.remove(c);
                         ((jugador) jugadores.get(i)).setCantcarro(((jugador) jugadores.get(i)).getCantcarro() + 1);
                     }
@@ -327,19 +334,19 @@ public class Lab2P2_JazminSalgado {
             }
         }
     }
-    
-    public static void venderCarro(int i){
-         Scanner leer = new Scanner(System.in);
+
+    public static void venderCarro(int i) {
+        Scanner leer = new Scanner(System.in);
         if (i >= 0 && i < jugadores.size()) {
             if (jugadores.get(i) instanceof jugador) {
-                ((jugador)jugadores.get(i)).listarCarros();
+                ((jugador) jugadores.get(i)).listarCarros();
                 System.out.println("Ingrese el indice del carro que desea Vender: ");
                 int c = leer.nextInt();
-                if (c >= 0 && c < ((jugador)jugadores.get(i)).getCarros().size()) {
-                    if (((jugador)jugadores.get(i)).getCarros().get(c) instanceof carro) {
+                if (c >= 0 && c < ((jugador) jugadores.get(i)).getCarros().size()) {
+                    if (((jugador) jugadores.get(i)).getCarros().get(c) instanceof carro) {
                         carros.add(compra.get(c));
                         ((jugador) jugadores.get(i)).setCuenta(((jugador) jugadores.get(i)).getCuenta() + ((carro) carros.get(c)).getPrecio());
-                        System.out.println("Carro vendido: Ahora el modelo " + ((carro) carros.get(c)).getModelo() + " es de " + ((jugador) jugadores.get(i)).getNombre());
+                        System.out.println("Carro vendido: Ahora el modelo " + ((carro) carros.get(c)).getModelo() + " vuelve a la lista de carros  ");
                         compra.remove(c);
                         ((jugador) jugadores.get(i)).setCantcarro(((jugador) jugadores.get(i)).getCantcarro() - 1);
                     }
@@ -347,5 +354,61 @@ public class Lab2P2_JazminSalgado {
             }
         }
     }
-    
+
+    public static void modificarInstal(int i) {
+        Scanner leer = new Scanner(System.in);
+        if (i >= 0 && i >= 0 && i < jugadores.size()) {
+            if (jugadores.get(i) instanceof jugador) {
+                System.out.println("Ingrese el indice del carro a modificar: ");
+                int m = leer.nextInt();
+                if (m >= 0 && m < ((jugador) jugadores.get(i)).getCarros().size()) {
+                    if (((jugador) jugadores.get(i)).getCarros().get(m) instanceof carro) {
+                        System.out.println("---MENU DE MODIFICACIONES---\n"
+                                + "1. Spoiler-3500\n"
+                                + "2. Side Skirts-1800\n"
+                                + "3. Front Bumper-2000\n"
+                                + "4. Rock Bumper-1500\n"
+                                + "5. Super Builds-8800");
+
+                        int op = leer.nextInt();
+                        String mod = "";
+                        double price = 0;
+                        switch (op) {
+                            case 1:
+                                mod = "Spoiler";
+                                price = 3500;
+                                break;
+                            case 2:
+                                mod = "Side Skirts";
+                                price = 1800;
+                                break;
+                            case 3:
+                                mod = "Front Bumper";
+                                price = 2000;
+                                break;
+                            case 4:
+                                mod = "Rock Bumper";
+                                price = 1500;
+                                break;
+                            case 5:
+                                mod = "Super Builds";
+                                price = 8800;
+                                break;
+                            default:
+                                System.out.println("Numero ingresado no valido");
+                        }
+                        if ( ((jugador)jugadores.get(i)).getCarros().get(m).getMejoras().contains(mod)) {
+                            System.out.println("Modificacion ya a sido agregada");
+                        } else {
+                            ((jugador)jugadores.get(i)).getCarros().get(m).getMejoras().add(mod);
+                           ((jugador)jugadores.get(i)).getCarros().get(m).setPrecio(((jugador)jugadores.get(i)).getCarros().get(m).getPrecio()%price);
+                            ((jugador)jugadores.get(i)).setCuenta(((jugador)jugadores.get(i)).getCuenta()-price);
+                        }
+                    }
+                }
+                System.out.println("Instalaciones de auto agregadas");
+            }
+        }
+    }
+
 }

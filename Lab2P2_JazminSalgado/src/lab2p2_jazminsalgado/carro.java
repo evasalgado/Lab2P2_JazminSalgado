@@ -33,7 +33,10 @@ public class carro {
         this.color = color;
         this.precio = precio;
     }
-
+    
+    public carro(ArrayList<String>m){
+        mejoras=m;
+    }
     public void setMarca(String m) {
         marca = m;
     }
@@ -75,7 +78,9 @@ public class carro {
              if (m.contains("Spoiler") || m.contains("Side Skirts") || m.contains("Front Bumper")
                 || m.contains("Back Bumper") || m.contains("Super Builds")) {
             mejoras = m;
-        }
+        } else {
+                 System.out.println("Lo ingresado no es una opcion");
+             }
         }
     }
 
