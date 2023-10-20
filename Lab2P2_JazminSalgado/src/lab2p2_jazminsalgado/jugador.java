@@ -82,6 +82,14 @@ public class jugador {
     public double getCuenta() {
         return cuenta;
     }
+    
+    public void listarCarros(){
+        for (carro carro1 : carros) {
+            if (carro1 instanceof carro) {
+                System.out.println(carro1+"\n");
+            }
+        }
+    }
 
     @Override
     public String toString() {

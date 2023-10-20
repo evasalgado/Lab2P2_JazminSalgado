@@ -283,7 +283,7 @@ public class Lab2P2_JazminSalgado {
             System.out.println("---MENU DE COMPRA Y VENTA---\n"
                     + "1. Comprar Carro\n"
                     + "2. Hacer modificaciones de carro\n"
-                    + "3. Listar compras\n"
+                    + "3. Vender Carro\n"
                     + "4. Salir");
             op = leer.nextInt();
             switch (op) {
@@ -296,8 +296,7 @@ public class Lab2P2_JazminSalgado {
                 case 2:
                     break;
                 case 3:
-                    System.out.println("Ventas hechas:\n");
-                    listarCompras();
+
                     break;
                 case 4: 
                     System.out.println("Volviendo al menu");
@@ -329,9 +328,24 @@ public class Lab2P2_JazminSalgado {
         }
     }
     
-    public static void listarCompras(){
-        for (Object sells : compra) {
-            System.out.println(sells+"\n");
+    public static void venderCarro(int i){
+         Scanner leer = new Scanner(System.in);
+        if (i >= 0 && i < jugadores.size()) {
+            if (jugadores.get(i) instanceof jugador) {
+                ((jugador)jugadores.get(i)).listarCarros();
+                System.out.println("Ingrese el indice del carro que desea Vender: ");
+                int c = leer.nextInt();
+                if (c >= 0 && c < ((jugador)jugadores.get(i)).getCarros().size()) {
+                    if (((jugador)jugadores.get(i)).getCarros().get(c) instanceof carro) {
+                        carros.add(compra.get(c));
+                        ((jugador) jugadores.get(i)).setCuenta(((jugador) jugadores.get(i)).getCuenta() + ((carro) carros.get(c)).getPrecio());
+                        System.out.println("Carro vendido: Ahora el modelo " + ((carro) carros.get(c)).getModelo() + " es de " + ((jugador) jugadores.get(i)).getNombre());
+                        compra.remove(c);
+                        ((jugador) jugadores.get(i)).setCantcarro(((jugador) jugadores.get(i)).getCantcarro() - 1);
+                    }
+                }
+            }
         }
     }
+    
 }
