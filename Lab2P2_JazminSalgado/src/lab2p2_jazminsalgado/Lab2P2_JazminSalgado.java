@@ -70,19 +70,24 @@ public class Lab2P2_JazminSalgado {
                     System.out.println("Ingrese el nombre de usuario del jugador: ");
                     n = leer.nextLine();
                     n = leer.nextLine();
-                    pr = alea.nextInt(100, 100000);
-                    money = alea.nextDouble(1000, 100000);
+                    pr = alea.nextInt(1000, 999999);
+                    money = alea.nextDouble(100000, 999999);
                     agregarJugador(n, pr, money);
                     break;
                 case 2:
+                    listarJugadores();
                     System.out.println("Ingrese el indice del jugador a modificar: ");
                     int m = leer.nextInt();
+                    modificarJugador(m);
                     break;
                 case 3:
                     System.out.println("Lista de jugadores: ");
                     listarJugadores();
                     break;
                 case 4:
+                    listarJugadores();
+                    System.out.println("Ingrese el indice del jugador a eliminar: ");
+                    int e = leer.nextInt();
                     break;
                 default:
                     System.out.println("retornando al main....");
@@ -132,6 +137,28 @@ public class Lab2P2_JazminSalgado {
                 if (player instanceof jugador) {
                     System.out.println(player + "\n");
                 }
+            }
+        }
+    }
+
+    public static void modificarJugador(int i) {
+        Scanner leer = new Scanner(System.in);
+        Random alea = new Random();
+        String n = "";
+        int pr = 0;
+        double money = 0;
+        if (i >= 0 && i < jugadores.size()) {
+            if (jugadores.get(i) instanceof jugador) {
+                System.out.println("Ingrese el nombre de usuario del jugador: ");
+                n = leer.nextLine();
+                n = leer.nextLine();
+                pr = alea.nextInt(1000, 999999);
+                money = alea.nextDouble(100000, 999999);
+                ((jugador)jugadores.get(i)).setNombre(n);
+                ((jugador)jugadores.get(i)).setPuntosrep(pr);
+                ((jugador)jugadores.get(i)).setCuenta(money);
+                System.out.println("informacion modificada, "+n);
+                
             }
         }
     }

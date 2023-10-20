@@ -76,7 +76,7 @@ public class jugador {
         if (c > 0) {
             cuenta = c;
         }
-        System.out.println("No tienes dinero (pobre)");
+        System.out.println("No tienes dinero");
     }
 
     public double getCuenta() {
