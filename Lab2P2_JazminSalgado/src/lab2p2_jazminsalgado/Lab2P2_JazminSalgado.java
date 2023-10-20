@@ -27,8 +27,9 @@ public class Lab2P2_JazminSalgado {
             op = leer.nextInt();
             switch (op) {
                 case 1:
+                    menujugador();
                     break;
-                case 2: 
+                case 2:
                     break;
                 case 3:
                     break;
@@ -42,4 +43,30 @@ public class Lab2P2_JazminSalgado {
         }
     }
 
+    public static void menujugador() {
+        Scanner leer = new Scanner(System.in);
+        int op = 0;
+        while (op==0||op == 1 || op == 2 || op == 3 || op == 4) {
+            System.out.println("----MENU JUGADORES----\n"
+                    + "1. Crear Jugador\n"
+                    + "2. Modificar Jugador\n"
+                    + "3. Listar jugadores\n"
+                    + "4. Eliminar jugadores");
+            op= leer.nextInt();
+            switch (op) {
+                case 1:
+                    
+                    break;
+                case 2: 
+                    break;
+                case 3: 
+                    break; 
+                case 4:
+                    break;
+                default:
+                    System.out.println("retornando al main....");
+                    break;
+            }
+        }
+    }
 }

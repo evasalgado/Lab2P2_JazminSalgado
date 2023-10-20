@@ -44,7 +44,11 @@ public class jugador {
         return cantcarro;
     }
     public void setCarros(ArrayList<carro> c){
-        carros=c;
+        if (c.isEmpty()) {
+            System.out.println("Por el momento no hay carros");
+        } else {
+            carros=c;
+        }
     }
     public ArrayList<carro> getCarros(){
         return carros;

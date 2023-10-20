@@ -69,9 +69,13 @@ public class carro {
     }
 
     public void setMejoras(ArrayList<String> m) {
-        if (m.contains("Spoiler") || m.contains("Side Skirts") || m.contains("Front Bumper")
+        if (m.isEmpty()) {
+            System.out.println("Por el momento no hay nada para añadir");
+        } else {
+             if (m.contains("Spoiler") || m.contains("Side Skirts") || m.contains("Front Bumper")
                 || m.contains("Back Bumper") || m.contains("Super Builds")) {
             mejoras = m;
+        }
         }
     }
 
