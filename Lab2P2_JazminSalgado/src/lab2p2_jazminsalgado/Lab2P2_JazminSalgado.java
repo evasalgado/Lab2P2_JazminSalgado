@@ -118,13 +118,15 @@ public class Lab2P2_JazminSalgado {
                     System.out.println("Ingrese la marca del carro: ");
                     marca = leer.nextLine();
                     marca = leer.nextLine();
-                    System.out.println("Ingrese el modelo del carro "+marca+": ");
-                    modelo=leer.nextLine();
-                    color=JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
+                    System.out.println("Ingrese el modelo del carro " + marca + ": ");
+                    modelo = leer.nextLine();
+                    color = JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
                     agregarCarro(marca, modelo, color, precio);
                     break;
                 case 2:
-                    
+                    listarCarros();
+                    System.out.println("Ingrese el indice del carro que desea modificar: ");
+                    int m = leer.nextInt();
                     break;
                 case 3:
                     System.out.println("Lista de carros: ");
@@ -201,15 +203,39 @@ public class Lab2P2_JazminSalgado {
             }
         }
     }
-    
-    public static void agregarCarro(String m, String mod, Color c, double p){
-       carros.add(new carro(mod, mod, c, p));
+
+    public static void agregarCarro(String m, String mod, Color c, double p) {
+        carros.add(new carro(mod, mod, c, p));
         System.out.println("Carro agregado");
     }
-    
-    public static void listarCarros(){
+
+    public static void listarCarros() {
         for (Object cars : carros) {
-            System.out.println(cars+"\n");
+            System.out.println(cars + "\n");
+        }
+    }
+
+    public static void modificarCarro(int i) {
+        Scanner leer = new Scanner(System.in);
+        String marca = "",
+                modelo = "";
+        Color color;
+        double precio = 0;
+        if (i >= 0 && i < carros.size()) {
+            if (carros.get(i) instanceof carro) {
+                System.out.println("Ingrese la marca del carro: ");
+                marca = leer.nextLine();
+                marca = leer.nextLine();
+                System.out.println("Ingrese el modelo del carro " + marca + ": ");
+                modelo = leer.nextLine();
+                color = JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
+                ((carro)carros.get(i)).setMarca(marca);
+                ((carro)carros.get(i)).setModelo(modelo);
+                ((carro)carros.get(i)).setPrecio(precio);
+                ((carro)carros.get(i)).setColor(color);
+                System.out.println("Carro modificado correctamente");
+            }
+
         }
     }
 }
