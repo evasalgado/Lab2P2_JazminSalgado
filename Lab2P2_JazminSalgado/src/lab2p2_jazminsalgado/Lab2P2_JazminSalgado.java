@@ -29,8 +29,8 @@ public class Lab2P2_JazminSalgado {
         do {
 
             System.out.println("---MENU----\n"
-                    + "1. Opción de Jugadores\n"
-                    + "2. Opción de Carros\n"
+                    + "1. Opcion de Jugadores\n"
+                    + "2. Opcion de Carros\n"
                     + "3. Compra y venta de carros\n"
                     + "4. Salir");
             op = leer.nextInt();
@@ -72,13 +72,13 @@ public class Lab2P2_JazminSalgado {
                 case 1:
                     String n;
                     int pr = 0;
-                    double money = 0;
+                    int money = 0;
                     System.out.println("Ingrese el nombre de usuario del jugador: ");
                     n = leer.nextLine();
                     n = leer.nextLine();
                     System.out.println("Ingrese sus puntos de reputacion: ");
                     pr = leer.nextInt();
-                    money = alea.nextDouble(100000, 999999);
+                    money = alea.nextInt(100000, 999999);
                     agregarJugador(n, pr, money);
                     break;
                 case 2:
@@ -120,7 +120,7 @@ public class Lab2P2_JazminSalgado {
                     String marca = "",
                      modelo = "";
                     Color color;
-                    double precio = 0;
+                    int precio = 0;
                     System.out.println("Ingrese la marca del carro: ");
                     marca = leer.nextLine();
                     marca = leer.nextLine();
@@ -129,7 +129,7 @@ public class Lab2P2_JazminSalgado {
                     System.out.println("Minimize su pantalla");
                     color = JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
                     System.out.println("Ingrese un precio de carro: ");
-                    precio = leer.nextDouble();
+                    precio = leer.nextInt();
                     agregarCarro(marca, modelo, color, precio);
                     break;
                 case 2:
@@ -155,7 +155,7 @@ public class Lab2P2_JazminSalgado {
         }
     }
 
-    public static void agregarJugador(String n, int pr, double p) {
+    public static void agregarJugador(String n, int pr, int p) {
         jugadores.add(new jugador(n, pr, p));
         System.out.println("Jugador creado. Bienvenido," + n);
 
@@ -178,14 +178,14 @@ public class Lab2P2_JazminSalgado {
         Random alea = new Random();
         String n = "";
         int pr = 0;
-        double money = 0;
+        int money = 0;
         if (i >= 0 && i < jugadores.size()) {
             if (jugadores.get(i) instanceof jugador) {
                 System.out.println("Ingrese el nombre de usuario del jugador: ");
                 n = leer.nextLine();
                 System.out.println("Ingrese sus puntos de reputacion: ");
                 pr = leer.nextInt();
-                money = alea.nextDouble(100000, 999999);
+                money = alea.nextInt(100000, 999999);
                 ((jugador) jugadores.get(i)).setNombre(n);
                 ((jugador) jugadores.get(i)).setPuntosrep(pr);
                 ((jugador) jugadores.get(i)).setCuenta(money);
@@ -218,7 +218,7 @@ public class Lab2P2_JazminSalgado {
         }
     }
 
-    public static void agregarCarro(String m, String mod, Color c, double p) {
+    public static void agregarCarro(String m, String mod, Color c, int p) {
         carros.add(new carro(m, mod, c, p));
         System.out.println("Carro agregado");
     }
@@ -234,7 +234,7 @@ public class Lab2P2_JazminSalgado {
         String marca = "",
                 modelo = "";
         Color color;
-        double precio = 0;
+        int precio = 0;
         if (i >= 0 && i < carros.size()) {
             if (carros.get(i) instanceof carro) {
                 System.out.println("Ingrese la marca del carro: ");
@@ -244,7 +244,7 @@ public class Lab2P2_JazminSalgado {
                 modelo = leer.nextLine();
                 color = JColorChooser.showDialog(null, "Ingrese un color: ", Color.BLUE);
                 System.out.println("Ingrese un precio de carro: ");
-                precio = leer.nextDouble();
+                precio = leer.nextInt();
                 ((carro) carros.get(i)).setMarca(marca);
                 ((carro) carros.get(i)).setModelo(modelo);
                 ((carro) carros.get(i)).setPrecio(precio);
@@ -375,7 +375,7 @@ public class Lab2P2_JazminSalgado {
 
                         int op = leer.nextInt();
                         String mod = "";
-                        double price = 0;
+                        int price = 0;
                         switch (op) {
                             case 1:
                                 mod = "Spoiler";

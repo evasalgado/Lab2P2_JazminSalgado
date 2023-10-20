@@ -16,13 +16,13 @@ public class jugador {
     private int cantcarro;
     private ArrayList<carro> carros = new ArrayList();
     private int puntosrep;
-    private double cuenta;
+    private int cuenta;
 
     public jugador() {
 
     }
 
-    public jugador(String n, int pr, double c) {
+    public jugador(String n, int pr, int c) {
         nombre = n;
         cuenta = c;
         puntosrep = pr;
@@ -74,13 +74,13 @@ public class jugador {
         return puntosrep;
     }
 
-    public void setCuenta(double c) {
+    public void setCuenta(int c) {
         if (c > 0) {
             cuenta = c;
         }
     }
 
-    public double getCuenta() {
+    public int getCuenta() {
         return cuenta;
     }
 
@@ -94,7 +94,7 @@ public class jugador {
 
     @Override
     public String toString() {
-        return nombre + "\n cantidad de carros: " + cantcarro + "\npuntos de reputación: " + puntosrep + "\nDinero actual: " + cuenta;
+        return nombre + "\n cantidad de carros: " + cantcarro + "\npuntos de reputacion: " + puntosrep + "\nDinero actual: " + cuenta;
     }
 
 }

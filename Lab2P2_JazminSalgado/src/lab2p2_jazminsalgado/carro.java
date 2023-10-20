@@ -16,7 +16,7 @@ public class carro {
     private String marca;
     private String modelo;
     private Color color;
-    private double precio;
+    private int precio;
     private ArrayList<String> mejoras = new ArrayList<>();
 
     public carro() {
@@ -27,7 +27,7 @@ public class carro {
         modelo = mod;
     }
 
-    public carro(String marca, String modelo, Color color, double precio) {
+    public carro(String marca, String modelo, Color color, int precio) {
         this.marca = marca;
         this.modelo = modelo;
         this.color = color;
@@ -61,13 +61,13 @@ public class carro {
         return color;
     }
 
-    public void setPrecio(double p) {
+    public void setPrecio(int p) {
         if (precio > 100000) {
             precio = p;
         }
     }
 
-    public double getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
